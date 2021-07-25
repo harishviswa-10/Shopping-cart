@@ -1,0 +1,108 @@
+<html>
+   <head>
+       <title>Shopping Cart</title>
+	   <meta name="viewport" content="width=device-width, initial-scale=1">
+	   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	   <meta charset="utf-8">
+	   <link rel="stylesheet" href="styles.css">
+	   <script>
+	       function openNav(){
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+            function closeNav(){
+                document.getElementById("mySidenav").style.width = "0";
+            }
+			function openCart(){
+                document.getElementById("mycart").style.width = "500px";	
+            }
+            function closeCart(){
+                document.getElementById("mycart").style.width = "0";
+            }
+			var tcost=0;
+			function main(){
+			 $("#cost").text("Bill Amount = "+tcost);
+			}
+			$(function(){
+			   $("#product button").click(function(){
+			      if($(this).text()=="ADD TO CART"){
+			           $(this).text("Remove from cart");
+                       var p=$(this).parents("tr");
+                       $("#res").append("<tr>"+p.html()+"</tr>");
+					   $("#res #"+this.id).remove();
+				       var cost=document.getElementById(this.id).value;
+				       var c=parseInt(cost);
+                       tcost=tcost+c;
+                  }
+                  else{
+				       $(this).text("ADD TO CART");
+					   var cost=document.getElementById(this.id);
+				       var c=parseInt(cost.value);
+                       tcost=tcost-c;
+					   var pr=$(this).parents("td").attr("class");
+					   $('#res td.'+pr).remove();
+                  }
+                  main();				  
+			   });
+		   });
+		   
+	   </script>
+   </head>
+   <body>
+	<div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">About</a>
+        <a href="Shopping.html">Products</a>
+        <a href="#" onclick="openCart()">Cart</a>
+    </div>
+	<div id="mycart" class="cart" style="float:right;">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeCart()">&times;</a>
+		<h4><b>CART - ORDER SUMMARY</b><h4>
+        <table id="res"></table>
+		<hr>
+		<div id="cost"></div>
+		<button onclick="document.location=('payment.html')">CONFIRM ORDER</button>
+    </div>
+	<div id="head">
+	<h1><span style="cursor:pointer;float:left;" onclick="openNav()">&#9776;</span>SHOPPING ZONE<i style="cursor:pointer;float:right;padding-right:10px;" class="fa fa-shopping-cart" onclick="openCart()"></i></h1>
+    </div>	
+	 <table id="product">
+		 <tr>
+		    <td class="tab1"><img src="cooler.png"></td>
+			<td class="tab1">
+			  <p><i>Sponsored</i><br><b>FASTTRACK</b><br>Men's & Boy's Sunglasses<br><del>Rs 999/-</del><b>Rs 599/- save Rs 400/-</b><br><button value="599" id="cool1">ADD TO CART</button></p>
+			</td>
+		</tr>
+		<tr>
+		    <td class="tab2"><img src="cooler1.png"></td>
+			<td class="tab2">
+			  <p><i>Sponsored</i><br><b>OAKLEY</b><br>Aviator glass<br><b>Rs 699/-</b><br><button value="699" id="cool2">ADD TO CART</button></p>
+			</td>
+		</tr>
+		<tr>
+		    <td class="tab3"><img src="cooler2.jpg"></td>
+			<td class="tab3">
+			  <p><i>Sponsored</i><br><b>RAYBAN</b><br>Cooling glass<br><b>Rs 499/-</b><br><button value="499" id="cool3">ADD TO CART</button></p>
+			</td>
+		</tr>
+		<tr>
+		    <td class="tab4"><img src="slipper.jpg"></td>
+			<td class="tab4">
+			  <p><i>Sponsored</i><br><b>REEBOK</b><br>Men's Crocs<br><del>Rs 1199/-</del><b>Rs 999/- save Rs 200/-</b><br><button value="999" id="slip1">ADD TO CART</button></p>
+			</td>
+		</tr>
+		<tr>
+		    <td class="tab5"><img src="slipper1.jpg"></td>
+			<td class="tab5">
+			  <p><i>Sponsored</i><br><b>FASTTRACK</b><br>Men's Casual<br><b>Rs 799/-</b><br><button value="799" id="slip2">ADD TO CART</button></p>
+			</td>
+		</tr>
+		<tr>
+		    <td class="tab6"><img src="slipper2.jpg"></td>
+			<td class="tab6">
+			  <p><i>Sponsored</i><br><b>WOODLAND</b><br>Men's Flip-Flop<br><b>Rs 1599/-</b><br><button value="1599" id="slip3">ADD TO CART</button></p>
+			</td>
+		</tr>
+		</table>
+   </body>
+</html>
